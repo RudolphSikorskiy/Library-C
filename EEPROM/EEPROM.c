@@ -32,19 +32,24 @@ unsigned char EEPROM_read(unsigned int uiAddress)
 	EEAR = uiAddress;			/* Write addres to register*/
 	EECR |= (1<<EERE);			/* Read data */
 	return EEDR;				/* Return data */
-}uint16_t EEPROM_read_word(unsigned int uiAddress)
+}
+uint16_t EEPROM_read_word(unsigned int uiAddress)
 {
 	uint16_t dt = EEPROM_read(uiAddress+1)*256;
 	asm("NOP");
 	dt += EEPROM_read(uiAddress);
 	return dt;
-}uint32_t EEPROM_read_dword(unsigned int uiAddress)
+}
+
+uint32_t EEPROM_read_dword(unsigned int uiAddress)
 {
 	uint32_t dt = EEPROM_read_word(uiAddress+2)*65536;
 	asm("nop");
 	dt += EEPROM_read_word(uiAddress);
 	return dt;
-}const char* EEPROM_read_string(unsigned int uiAddress, unsigned int sz)
+}
+
+const char* EEPROM_read_string(unsigned int uiAddress, unsigned int sz)
 {
 	unsigned int i;
 	char* str1;
