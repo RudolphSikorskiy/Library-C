@@ -1,11 +1,11 @@
 #include "EEPROM.h"
 void EEPROM_write(unsigned int uiAddress, unsigned char ucData)
 {
-	while(EECR & (1<<EEWE)){}/* Ждем освобождение флага окончания последней операции с памятью */
-	EEAR = uiAddress;/* Заносим адрес в регистр*/
-	EEDR = ucData; /* Заносим данные в регистр*/
-	EECR |= (1<<EEMWE);/* разрешаем запись */
-	EECR |= (1<<EEWE);/* пишем */
+	while(EECR & (1<<EEWE)){}						/* waiting flag complit work with memory */
+	EEAR = uiAddress;								/* Write addres to register*/
+	EEDR = ucData; 									/* Write data to register*/
+	EECR |= (1<<EEMWE);								/* Write permission */
+	EECR |= (1<<EEWE);								/* write */
 }
 void EEPROM_write_word(unsigned int uiAddress, uint16_t ucData)
 {
@@ -28,10 +28,10 @@ void EEPROM_write_string(unsigned int uiAddress, char str1[])
 
 unsigned char EEPROM_read(unsigned int uiAddress)
 {
-	while(EECR & (1<<EEWE)){}	/* Ждем освобождение флага окончания последней операции с памятью */
-	EEAR = uiAddress;			/* Заносим адрес в регистр*/
-	EECR |= (1<<EERE);			/* читаем данные */
-	return EEDR;				/* возвращаем результат */
+	while(EECR & (1<<EEWE)){}	/* waiting flag complit work with memory  */
+	EEAR = uiAddress;			/* Write addres to register*/
+	EECR |= (1<<EERE);			/* Read data */
+	return EEDR;				/* Return data */
 }uint16_t EEPROM_read_word(unsigned int uiAddress)
 {
 	uint16_t dt = EEPROM_read(uiAddress+1)*256;

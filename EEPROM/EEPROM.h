@@ -11,13 +11,13 @@
 
 #include "main.h"
 
-void EEPROM_write			(unsigned int uiAddress, unsigned char ucData);			// write dyte
+void EEPROM_write			(unsigned int uiAddress, unsigned char ucData);		// write byte
 void EEPROM_write_word		(unsigned int uiAddress, uint16_t ucData);			// write 2xbyte
-void EEPROM_write_dword		(unsigned int uiAddress, uint32_t ucData);			//пишем 4х-байтную величину
-void EEPROM_write_string	(unsigned int uiAddress, char str1[]);				//пишем строку
+void EEPROM_write_dword		(unsigned int uiAddress, uint32_t ucData);			// write 4х-bite size
+void EEPROM_write_string	(unsigned int uiAddress, char str1[]);				// write string
 
 unsigned char	EEPROM_read			(unsigned int uiAddress);							// read byte
-uint16_t		EEPROM_read_word	(unsigned int uiAddress);							//читаем 2х-байтную величину
-uint32_t		EEPROM_read_dword	(unsigned int uiAddress);							//читаем 4х-байтную величину
-const char*		EEPROM_read_string	(unsigned int uiAddress, unsigned int sz);	//читаем строку
+uint16_t		EEPROM_read_word	(unsigned int uiAddress);							// read 2xbyte
+uint32_t		EEPROM_read_dword	(unsigned int uiAddress);							// read 4х-bite size
+const char*		EEPROM_read_string	(unsigned int uiAddress, unsigned int sz);			// read string
 #endif /* EEPROM_H_ */
